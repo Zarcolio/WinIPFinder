@@ -1,6 +1,6 @@
 @ECHO OFF
 IF NOT "%1"=="" SET LookupDomain=%1
-IF "%1"=="" SET LookupDomain=%USERDNSDOMAIN%
+IF "%1"=="" SET LookupDomain=%USERDOMAIN%
 IF "%LookupDomain%"=="" SET LookupDomain=#_NO_DOMAIN_#
 
 SET yy=%date:~-4%
@@ -10,7 +10,7 @@ SET curdate=%yy%%mm%%dd%
 
 SET scriptpath=%~dp0
 
-SET OutputFile="%scriptpath%IPAddressesFound-%LookupDomain%-%curdate%.txt"
+SET OutputFile="%scriptpath%IPAddressesFound-%USERDOMAIN%-%COMPUTERNAME%-%curdate%.txt"
 ECHO ################################################################################################################>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # IPCONFIG /a                                                                                                    #>>%OutputFile%
@@ -82,11 +82,14 @@ REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 IF NOT "%1"=="" GOTO manualDomain
 
-IF "%USERDOMAIN%"==AzureAD ECHO This computer is connected to AzureAD...
+IF "%USERDOMAIN%"=="AzureAD" (
+	ECHO This computer is connected to AzureAD...
+	GOTO Ending
+)
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" ECHO This computer doesn't seem to be domain-joined...
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" GOTO skipDomain
-IF "%USERDNSDOMAIN%"=="" ECHO This computer doesn't seem to be domain-joined...
-IF "%USERDNSDOMAIN%"=="" GOTO skipDomain
+IF "%USERDOMAIN%"=="" ECHO This computer doesn't seem to be domain-joined...
+IF "%USERDOMAIN%"=="" GOTO skipDomain
 :manualDomain
 
 	NSLOOKUP %LookupDomain%>>%OutputFile%
