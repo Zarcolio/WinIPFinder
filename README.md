@@ -1,5 +1,5 @@
 # WinIPFinder
-Tries to find IP addresses in Windows, useful when engaged in an on-prem pentest
+Tries to find IP addresses in Windows, useful when engaged in an on-prem pentest / red teaming exercise.
 Outputs a log file SubnetFinder-%USERDOMAIN%-%COMPUTERNAME%-%ddmmyyyy%.txt
 
 Uses the following commands to extract IP addresses from a Windows machine:
