@@ -1,7 +1,7 @@
 # WinIPFinder
 Tries to find IP addresses in Windows, useful when engaged in an on-prem pentest / red teaming exercise.
 
-Outputs a log file SubnetFinder-%USERDOMAIN%-%COMPUTERNAME%-%ddmmyyyy%.txt
+Outputs a log file SubnetFinder-%USERDNSDOMAIN%-%COMPUTERNAME%-%ddmmyyyy%.txt
 
 Uses the following commands to extract IP addresses from a Windows machine:
 
@@ -20,10 +20,10 @@ REG query HKEY_CURRENT_USER\SOFTWARE\9bis.com\KiTTY\SshHostKeys
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "address "
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server "
 NSLOOKUP %USERDNSDOMAIN%
-NSLOOKUP -type=srv _kerberos._tcp.%USERDOMAIN%
-NSLOOKUP -type=srv _kpasswd._tcp.%USERDOMAIN%
-NSLOOKUP -type=srv _ldap._tcp.%USERDOMAIN%
-NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%USERDOMAIN%
+NSLOOKUP -type=srv _kerberos._tcp.%USERDNSDOMAIN%
+NSLOOKUP -type=srv _kpasswd._tcp.%USERDNSDOMAIN%
+NSLOOKUP -type=srv _ldap._tcp.%USERDNSDOMAIN%
+NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%USERDNSDOMAIN%
 TRACERT -h 2 %USERDNSDOMAIN%
 ```
 
