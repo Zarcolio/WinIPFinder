@@ -27,6 +27,6 @@ NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%USERDNSDOMAIN%
 TRACERT -h 2 %USERDNSDOMAIN%
 ```
 
-%USERDOMAIN% can also be replaced by %1 :)
+%USERDNSDOMAIN% can also be replaced by %1 :)
 
 Got additions? Pls let me know!
