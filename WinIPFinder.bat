@@ -1,6 +1,6 @@
 @ECHO OFF
 IF NOT "%1"=="" SET LookupDomain=%1
-IF "%1"=="" SET LookupDomain=%USERDOMAIN%
+IF "%1"=="" SET LookupDomain=%USERDNSDOMAIN%
 IF "%LookupDomain%"=="" SET LookupDomain=#_NO_DOMAIN_#
 
 SET yy=%date:~-4%
