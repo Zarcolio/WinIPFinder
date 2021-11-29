@@ -19,6 +19,9 @@ REG query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\SshHostKeys
 REG query HKEY_CURRENT_USER\SOFTWARE\9bis.com\KiTTY\SshHostKeys
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "address "
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server "
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default"
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers"
+FIND %userprofile%\documents\*.rdp "full address:"
 NSLOOKUP %USERDNSDOMAIN%
 NSLOOKUP -type=srv _kerberos._tcp.%USERDNSDOMAIN%
 NSLOOKUP -type=srv _kpasswd._tcp.%USERDNSDOMAIN%
