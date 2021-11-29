@@ -107,7 +107,7 @@ REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers">
 
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
-ECHO # FIND %userprofile%\documents\*.rdp                                                             #>>%OutputFile%
+ECHO # FIND %USERPROFILE%\Documents\*.rdp                                                             #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 FIND %userprofile%\documents\*.rdp "full address:">>%OutputFile%
