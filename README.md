@@ -21,7 +21,7 @@ REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server "
 REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default"
 REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers"
-FIND %userprofile%\documents\*.rdp "full address:"
+FIND %USERPROFILE%\Documents\*.rdp "full address:"
 NSLOOKUP %USERDNSDOMAIN%
 NSLOOKUP -type=srv _kerberos._tcp.%USERDNSDOMAIN%
 NSLOOKUP -type=srv _kpasswd._tcp.%USERDNSDOMAIN%
