@@ -34,6 +34,13 @@ ARP -a>>%OutputFile%
 
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
+ECHO # NBTSTAT -c                                                                                                     #>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile%
+NBTSTAT -c>>%OutputFile%
+
+ECHO ################################################################################################################>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
 ECHO # NETSTAT -n                                                                                                     #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
@@ -58,7 +65,7 @@ ECHO #                                                                          
 ECHO # TRACERT                                                                                                        #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
-TRACERT -h 2 8.8.8.8>>%OutputFile%
+TRACERT -h 2 self.events.data.microsoft.com>>%OutputFile%
 
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
@@ -100,7 +107,7 @@ REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers">
 
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
-ECHO # FIND %userprofile%\documents\*.rdp                                                                             #>>%OutputFile%
+ECHO # FIND %userprofile%\documents\*.rdp                                                             #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 FIND %userprofile%\documents\*.rdp "full address:">>%OutputFile%
