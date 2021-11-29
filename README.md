@@ -12,7 +12,7 @@ ARP -a
 NETSTAT.EXE -n |FIND /v "127.0.0."
 NET use
 NETSH winhttp show proxy
-TRACERT -h 2 self.events.data.microsoft.com
+TRACERT -h 2 8.8.8.8
 WMIC printer get DriverName, Name, Portname | FIND /v /i "microsoft"
 Qappsrv
 REG query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\SshHostKeys
