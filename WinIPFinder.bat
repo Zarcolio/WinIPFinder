@@ -17,54 +17,63 @@ ECHO # IPCONFIG /a                                                              
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 IPCONFIG /all>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # ROUTE print                                                                                                    #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 ROUTE PRINT>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # ARP -a                                                                                                         #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 ARP -a>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # NETSTAT -n                                                                                                     #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 NETSTAT.EXE -n |FIND /v "127.0.0.">>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # NET use                                                                                                        #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 NET use>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # NETSH winhttp show proxy                                                                                       #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 NETSH winhttp show proxy>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # TRACERT                                                                                                        #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 TRACERT -h 2 8.8.8.8>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # WMIC printer                                                                                                   #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 WMIC printer get DriverName, Name, Portname | FIND /v /i "microsoft">>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # Qappsrv                                                                                                        #>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO ################################################################################################################>>%OutputFile%
 Qappsrv>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # REG query HKCU SshHostKeys                                                                                     #>>%OutputFile%
@@ -72,6 +81,7 @@ ECHO #                                                                          
 ECHO ################################################################################################################>>%OutputFile%
 REG query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\SshHostKeys>>%OutputFile%
 REG query HKEY_CURRENT_USER\SOFTWARE\9bis.com\KiTTY\SshHostKeys>>%OutputFile%
+
 ECHO ################################################################################################################>>%OutputFile%
 ECHO #                                                                                                               #>>%OutputFile%
 ECHO # REG query HKLM SshHostKeys Tcpip Interfaces                                                                    #>>%OutputFile%
@@ -80,16 +90,31 @@ ECHO ###########################################################################
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "address ">>%OutputFile%
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server ">>%OutputFile%
 
+ECHO ################################################################################################################>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
+ECHO # REG query HKCU Terminal Servers                                                                                #>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile%
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default">>%OutputFile%
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers">>%OutputFile%
+
+ECHO ################################################################################################################>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
+ECHO # FIND %userprofile%\documents\*.rdp                                                                             #>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile%
+FIND %userprofile%\documents\*.rdp "full address:">>%OutputFile%
+
 IF NOT "%1"=="" GOTO manualDomain
 
 IF "%USERDOMAIN%"=="AzureAD" (
 	ECHO This computer is connected to AzureAD...
 	GOTO Ending
 )
+IF "%LookupDomain%"=="" ECHO This computer doesn't seem to be domain-joined...
+IF "%LookupDomain%"=="" GOTO skipDomain
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" ECHO This computer doesn't seem to be domain-joined...
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" GOTO skipDomain
-IF "%USERDOMAIN%"=="" ECHO This computer doesn't seem to be domain-joined...
-IF "%USERDOMAIN%"=="" GOTO skipDomain
 :manualDomain
 
 	NSLOOKUP %LookupDomain%>>%OutputFile%
