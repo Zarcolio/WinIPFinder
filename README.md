@@ -1,5 +1,5 @@
 # WinIPFinder
-Tries to find IP addresses from within Windows, useful when engaged in an on-prem pentest / red teaming exercise.
+Tries to find IP addresses from within Windows, using LotL (Living off the Land) tools, useful when engaged in an on-prem pentest / red teaming exercise.
 
 Outputs a log file SubnetFinder-%USERDNSDOMAIN%-%COMPUTERNAME%-%ddmmyyyy%.txt
 
