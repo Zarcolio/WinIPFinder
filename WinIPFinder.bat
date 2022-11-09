@@ -12,124 +12,128 @@ SET scriptpath=%~dp0
 
 SET OutputFile="%scriptpath%IPAddressesFound-%USERDOMAIN%-%COMPUTERNAME%-%curdate%.txt"
 ECHO ################################################################################################################>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # IPCONFIG /a                                                                                                    #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-IPCONFIG /all>>%OutputFile%
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # IPCONFIG /a                                                                                                    #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+IPCONFIG /all>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # ROUTE print                                                                                                    #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-ROUTE PRINT>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # ROUTE print                                                                                                    #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ROUTE PRINT>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # ARP -a                                                                                                         #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-ARP -a>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # ARP -a                                                                                                         #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ARP -a>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # NBTSTAT -c                                                                                                     #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-NBTSTAT -c>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # NBTSTAT -c                                                                                                     #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+NBTSTAT -c>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # NETSTAT -n                                                                                                     #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-NETSTAT.EXE -n |FIND /v "127.0.0.">>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # NETSTAT -n                                                                                                     #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+NETSTAT.EXE -n |FIND /v "127.0.0.">>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # NET use                                                                                                        #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-NET use>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # NET use                                                                                                        #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+NET use>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # NETSH winhttp show proxy                                                                                       #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-NETSH winhttp show proxy>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # NETSH winhttp show proxy                                                                                       #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+NETSH winhttp show proxy>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # TRACERT                                                                                                        #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-TRACERT -h 2 self.events.data.microsoft.com>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # TRACERT                                                                                                        #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+TRACERT -h 2 self.events.data.microsoft.com>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # WMIC printer                                                                                                   #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-WMIC printer get DriverName, Name, Portname | FIND /v /i "microsoft">>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # WMIC printer                                                                                                   #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+WMIC printer get DriverName, Name, Portname | FIND /v /i "microsoft">>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # Qappsrv                                                                                                        #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-Qappsrv>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # Qappsrv                                                                                                        #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+Qappsrv>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # REG query HKCU SshHostKeys                                                                                     #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-REG query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\SshHostKeys>>%OutputFile%
-REG query HKEY_CURRENT_USER\SOFTWARE\9bis.com\KiTTY\SshHostKeys>>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # REG query HKCU SshHostKeys                                                                                     #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+REG query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\SshHostKeys>>%OutputFile% 2>&1
+REG query HKEY_CURRENT_USER\SOFTWARE\9bis.com\KiTTY\SshHostKeys>>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # REG query HKLM SshHostKeys Tcpip Interfaces                                                                    #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "address ">>%OutputFile%
-REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server ">>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # REG query HKLM SshHostKeys Tcpip Interfaces                                                                    #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "address ">>%OutputFile% 2>&1
+REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server ">>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # REG query HKCU Terminal Servers                                                                                #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default">>%OutputFile%
-REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers">>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # REG query HKCU Terminal Servers                                                                                #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default">>%OutputFile% 2>&1
+REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers">>%OutputFile% 2>&1
 
-ECHO ################################################################################################################>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO # FIND %USERPROFILE%\Documents\*.rdp                                                             #>>%OutputFile%
-ECHO #                                                                                                               #>>%OutputFile%
-ECHO ################################################################################################################>>%OutputFile%
-FIND %userprofile%\documents\*.rdp "full address:">>%OutputFile%
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # FIND *\Documents\*.rdp                                                                                         #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+FIND %userprofile%\documents\*.rdp "full address:">>%OutputFile% 2>&1
+FIND %OneDrive%\documents\*.rdp "full address:">>%OutputFile% 2>&1
+
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO # dsregcmd /status                                                                                               #>>%OutputFile% 2>&1
+ECHO #                                                                                                               #>>%OutputFile% 2>&1
+ECHO ################################################################################################################>>%OutputFile% 2>&1
+dsregcmd /status>>%OutputFile% 2>&1
 
 IF NOT "%1"=="" GOTO manualDomain
 
-IF "%USERDOMAIN%"=="AzureAD" (
-	ECHO This computer is connected to AzureAD...
-	GOTO Ending
-)
 IF "%LookupDomain%"=="" ECHO This computer doesn't seem to be domain-joined...
 IF "%LookupDomain%"=="" GOTO skipDomain
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" ECHO This computer doesn't seem to be domain-joined...
 IF "%LOGONSERVER%"=="\\%COMPUTERNAME%" GOTO skipDomain
 :manualDomain
 
-	NSLOOKUP %LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _kerberos._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _kpasswd._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _ldap._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%LookupDomain%>>%OutputFile%
-	TRACERT -h 2 %LookupDomain%>>%OutputFile%
+	NSLOOKUP %LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _kerberos._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _kpasswd._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _ldap._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%LookupDomain%>>%OutputFile% 2>&1
+	TRACERT -h 2 %LookupDomain%>>%OutputFile% 2>&1
 
 	GOTO Ending
 rem :skipDomain
@@ -137,12 +141,12 @@ rem :skipDomain
 For /F "tokens=1 Delims={}" %%A In (   'WMIC NICConfig Where "IPEnabled='TRUE'" Get DNSDomainSuffixSearchOrder') Do (
 	SET LookupDomain=%%~A
 	rem echo %LookupDomain%
-	NSLOOKUP %LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _kerberos._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _kpasswd._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _ldap._tcp.%LookupDomain%>>%OutputFile%
-	NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%LookupDomain%>>%OutputFile%
-	TRACERT -h 2 %LookupDomain%>>%OutputFile%
+	NSLOOKUP %LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _kerberos._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _kpasswd._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _ldap._tcp.%LookupDomain%>>%OutputFile% 2>&1
+	NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%LookupDomain%>>%OutputFile% 2>&1
+	TRACERT -h 2 %LookupDomain%>>%OutputFile% 2>&1
 )
 
 :skipDomain
