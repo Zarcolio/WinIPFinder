@@ -21,13 +21,14 @@ REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 REG query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s|find /i "server "
 REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default"
 REG query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers"
-FIND %USERPROFILE%\Documents\*.rdp "full address:"
+FIND *\Documents\*.rdp "full address:"
 NSLOOKUP %USERDNSDOMAIN%
 NSLOOKUP -type=srv _kerberos._tcp.%USERDNSDOMAIN%
 NSLOOKUP -type=srv _kpasswd._tcp.%USERDNSDOMAIN%
 NSLOOKUP -type=srv _ldap._tcp.%USERDNSDOMAIN%
 NSLOOKUP -type=srv _ldap._tcp.dc._msdcs.%USERDNSDOMAIN%
 TRACERT -h 2 %USERDNSDOMAIN%
+dsregcmd /status
 ```
 
 %USERDNSDOMAIN% can also be replaced by %1 :)
